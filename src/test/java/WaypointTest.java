@@ -36,5 +36,5 @@ void main() {
             .color(Color.RED)
             .build();
 
-    waypointProvider.createWaypoint(null, waypoint);
+    waypointProvider.createWaypoint(null, customWaypoint);
 }

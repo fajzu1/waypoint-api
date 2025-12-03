@@ -6,13 +6,13 @@ import com.github.retrooper.packetevents.protocol.world.waypoint.TrackedWaypoint
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerWaypoint;
 import org.bukkit.entity.Player;
 
-public class WaypointFactory {
+public class WaypointDispatcher {
 
     private final TrackedWaypointFactory trackedWaypointFactory;
 
     private final PlayerManager playerManager;
 
-    public WaypointFactory(TrackedWaypointFactory trackedWaypointFactory) {
+    public WaypointDispatcher(TrackedWaypointFactory trackedWaypointFactory) {
         this.trackedWaypointFactory = trackedWaypointFactory;
 
         this.playerManager = PacketEvents.getAPI().getPlayerManager();
@@ -30,17 +30,17 @@ public class WaypointFactory {
 
     public void track(final Player player,
                       final Waypoint waypoint) {
-        send(player, waypoint, WrapperPlayServerWaypoint.Operation.TRACK);
+        this.send(player, waypoint, WrapperPlayServerWaypoint.Operation.TRACK);
     }
 
     public void hide(final Player player,
                      final Waypoint waypoint) {
-        send(player, waypoint, WrapperPlayServerWaypoint.Operation.UNTRACK);
+        this.send(player, waypoint, WrapperPlayServerWaypoint.Operation.UNTRACK);
     }
 
     public void update(final Player player,
                        final Waypoint waypoint) {
-        send(player, waypoint, WrapperPlayServerWaypoint.Operation.UPDATE);
+        this.send(player, waypoint, WrapperPlayServerWaypoint.Operation.UPDATE);
     }
 
 }

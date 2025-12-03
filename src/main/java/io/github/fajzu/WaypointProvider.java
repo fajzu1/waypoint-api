@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +16,7 @@ import java.util.logging.Level;
 public class WaypointProvider {
 
     private final WaypointService waypointService;
-    private final WaypointFactory waypointFactory;
+    private final WaypointDispatcher waypointDispatcher;
 
     private final TrackedWaypointFactory trackedWaypointFactory;
 
@@ -28,7 +27,7 @@ public class WaypointProvider {
         this.trackedWaypointFactory = new TrackedWaypointFactory(styleResolver);
 
         this.waypointService = new WaypointService();
-        this.waypointFactory = new WaypointFactory(this.trackedWaypointFactory);
+        this.waypointDispatcher = new WaypointDispatcher(this.trackedWaypointFactory);
 
         if (!plugin.getServer().getPluginManager().isPluginEnabled("PacketEvents")) {
             WaypointConstants.DEPENDENCY_NOT_FOUND.forEach(string -> {
@@ -59,14 +58,14 @@ public class WaypointProvider {
                                final @NotNull Waypoint waypoint) {
         this.waypointService.create(player.getUniqueId(), waypoint);
 
-        this.waypointFactory.track(player, waypoint);
+        this.waypointDispatcher.track(player, waypoint);
     }
 
     public void removeWaypoint(final @NotNull Player player,
                                final @NotNull Waypoint waypoint) {
         this.waypointService.remove(player.getUniqueId(), waypoint);
 
-        this.waypointFactory.hide(player, waypoint);
+        this.waypointDispatcher.hide(player, waypoint);
     }
 
     public Map<UUID, Waypoint> findAll(final @NotNull UUID uuid) {
@@ -75,25 +74,25 @@ public class WaypointProvider {
 
     public void track(final @NotNull Player player,
                       final @NotNull Waypoint waypoint) {
-        this.waypointFactory.track(player, waypoint);
+        this.waypointDispatcher.track(player, waypoint);
     }
 
     public void hide(final @NotNull Player player,
                      final @NotNull Waypoint waypoint) {
-        this.waypointFactory.hide(player, waypoint);
+        this.waypointDispatcher.hide(player, waypoint);
     }
 
     public void update(final @NotNull Player player,
                        final @NotNull Waypoint waypoint) {
-        this.waypointFactory.update(player, waypoint);
+        this.waypointDispatcher.update(player, waypoint);
     }
 
     public TrackedWaypoint toTracked(final @NotNull Waypoint waypoint) {
         return trackedWaypointFactory.create(waypoint);
     }
 
-    public WaypointFactory waypointFactory() {
-        return this.waypointFactory;
+    public WaypointDispatcher waypointFactory() {
+        return this.waypointDispatcher;
     }
 
     public WaypointService waypointService() {
