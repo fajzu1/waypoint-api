@@ -74,16 +74,24 @@ waypointProvider.sendWaypoint(player, waypoint);
 ```java
 Waypoint waypoint = waypointProvider.find(player.getUniqueId(), "UUID");
 
-waypoint.color(Color.BLUE);
-waypoint.style(WaypointStyle.of("custom", "path"));
-waypoint.location(new Location(
-        null,
+waypoint.
+
+color(Color.BLUE);
+waypoint.
+
+style(WaypointStyle.of("custom", "path"));
+        waypoint.
+
+location(new Location(
+                 null,
         10,
-        200,
-        10
+                 200,
+                 10
 ));
 
-waypointProvider.update(player, waypoint);
+        waypointProvider.
+
+update(player, waypoint);
 ```
 
 #### Removing a Waypoint
@@ -91,7 +99,9 @@ waypointProvider.update(player, waypoint);
 ```java
 Waypoint waypoint = waypointProvider.find(player.getUniqueId(), "UUID");
 
-waypointProvider.removeWaypoint(player, waypoint);
+waypointProvider.
+
+removeWaypoint(player, waypoint);
 ```
 
 ---

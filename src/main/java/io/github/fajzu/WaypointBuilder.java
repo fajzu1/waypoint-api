@@ -1,6 +1,5 @@
 package io.github.fajzu;
 
-import com.github.retrooper.packetevents.resources.ResourceLocation;
 import org.bukkit.Color;
 import org.bukkit.Location;
 
