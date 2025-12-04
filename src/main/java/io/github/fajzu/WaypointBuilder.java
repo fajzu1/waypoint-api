@@ -9,7 +9,6 @@ import java.util.UUID;
 public class WaypointBuilder {
 
     private UUID uuid = UUID.randomUUID();
-    private String name = "";
 
     private Position position;
     private Color color = Color.WHITE;
@@ -21,7 +20,6 @@ public class WaypointBuilder {
 
     private WaypointBuilder(final Waypoint waypoint) {
         this.uuid = waypoint.uuid();
-        this.name = waypoint.name();
         this.position = waypoint.position();
         this.color = waypoint.color();
         this.style = waypoint.style();
@@ -37,11 +35,6 @@ public class WaypointBuilder {
 
     public WaypointBuilder uuid(UUID uuid) {
         this.uuid = uuid;
-        return this;
-    }
-
-    public WaypointBuilder name(String name) {
-        this.name = name;
         return this;
     }
 
@@ -63,7 +56,6 @@ public class WaypointBuilder {
     public Waypoint build() {
         return new Waypoint(
                 this.uuid,
-                this.name,
                 this.position,
                 this.color,
                 this.style

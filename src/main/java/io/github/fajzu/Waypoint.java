@@ -7,7 +7,6 @@ import org.bukkit.Location;
 import java.util.UUID;
 
 public record Waypoint(UUID uuid,
-                       String name,
                        Position position,
                        Color color,
                        WaypointStyle style) {
