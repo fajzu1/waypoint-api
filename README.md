@@ -13,7 +13,7 @@
 
 ## 🧰 Requirements
 
-- Server version 1.21.5+
+- Server version 1.21.6+
 - [PacketEvents](https://github.com/retrooper/packetevents)
 - [Java](https://www.java.com/en/) 21+
 
