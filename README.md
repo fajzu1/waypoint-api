@@ -59,8 +59,7 @@ WaypointProvider waypointProvider = WaypointProvider.init(this);
 ```java
 Waypoint waypoint = WaypointBuilder
       .builder()
-      .name("Test")
-      .location(new Location(
+      .position(new Location(
             "world",
             0,
             100,
@@ -70,22 +69,25 @@ Waypoint waypoint = WaypointBuilder
       .color(Color.BLACK)
       .build();
 
-waypointProvider.sendWaypoint(player, waypoint);
+waypointProvider.track(player, waypoint);
 ```
 
 #### Updating a Waypoint
 
 ```java
-Waypoint waypoint = waypointProvider.find(player.getUniqueId(), "UUID");
+Waypoint waypoint = ...
 
-waypoint.color(Color.BLUE);
-waypoint.style(WaypointStyle.of("custom", "path"));
-waypoint.location(new Location(
-                 null,
-                 10,
-                 200,
-                 10
-));
+ waypoint
+         .toBuilder()
+         .color(Color.BLUE)
+         .style(WaypointStyle.of("custom", "path"))
+         .position(new Location(
+                null,
+                10,
+                200,
+                10
+         ))
+         .build();
 
 waypointProvider.update(player, waypoint);
 ```
@@ -93,9 +95,9 @@ waypointProvider.update(player, waypoint);
 #### Removing a Waypoint
 
 ```java
-Waypoint waypoint = waypointProvider.find(player.getUniqueId(), "UUID");
+Waypoint waypoint = ...
 
-waypointProvider.removeWaypoint(player, waypoint);
+waypointProvider.hide(player, waypoint);
 ```
 
 ---
@@ -111,5 +113,7 @@ Spotted an issue? Report it via Discord: **fizuxd** 💬
 - Add Bukkit Events handling for creating/updating/removing waypoint
 
 ## ❤️ Thanks for Your Support!
+
+- [notnwse](https://github.com/notnwse) - for significant enhancements and optimizations to the code
 
 If you enjoy using Waypoint-API, leave a ⭐ on the GitHub repo and share it with your friends!
