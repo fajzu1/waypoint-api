@@ -11,7 +11,9 @@
 - Lightweight and fast integration
 - Fully documented API structure
 
-- ⏯ Video: [Link](https://www.youtube.com/watch?v=FkM1QbLYQs0)
+---
+
+- Preview Video: [Link](https://www.youtube.com/watch?v=FkM1QbLYQs0)
 
 ## 🧰 Requirements
 
